@@ -1,0 +1,6 @@
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\obj\Debug\Cms21SaveEditor.csproj.AssemblyReference.cache
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\obj\Debug\Cms21SaveEditor.csproj.CoreCompileInputs.cache
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\bin\Debug\Cms21SaveEditor.exe
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\bin\Debug\Cms21SaveEditor.pdb
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\obj\Debug\Cms21SaveEditor.exe
+C:\Users\Sharp\Documents\_Programy\cms2021-save-editor-C-\src\Cms21SaveEditor\obj\Debug\Cms21SaveEditor.pdb
