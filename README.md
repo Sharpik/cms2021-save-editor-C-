@@ -4,7 +4,7 @@ A desktop application for editing **Car Mechanic Simulator 2021** save files (`.
 
 > **Always back up your save files before editing.**
 > Default save location on Windows:
-> `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Saves\`
+> `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Save\`
 
 ---
 
@@ -34,7 +34,7 @@ A desktop application for editing **Car Mechanic Simulator 2021** save files (`.
 
 | Platform | Path |
 |---|---|
-| Windows (Steam/Epic) | `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Saves\` |
+| Windows (Steam/Epic) | `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Save\` |
 | Windows (Xbox Game Pass) | `%LOCALAPPDATA%\Packages\RedDotGames.CarMechanicSimulator2021_h6vh6...\SystemAppData\wgs\` |
 | Linux (Steam) | `~/.steam/steam/userdata/<id>/1190000/remote/` |
 

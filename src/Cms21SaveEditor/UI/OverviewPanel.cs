@@ -48,14 +48,17 @@ namespace Cms21SaveEditor.UI
             grid.Controls.Add(MakeStatCard("XP", _xp), 2, 0);
             grid.Controls.Add(MakeStatCard("Skill Points", _skillPoints), 3, 0);
 
-            var profile = new GroupBox { Text = "Profile Info", Dock = DockStyle.Fill, Padding = new Padding(8) };
-            var pl = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 4, AutoSize = true };
-            pl.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));
-            pl.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-            pl.Controls.Add(MakeRow("Profile name", _header.ProfileName), 0, 0);
-            pl.Controls.Add(MakeRow("Save date", _header.SaveYear + "-" + _header.SaveMonth.ToString("00")), 0, 1);
-            pl.Controls.Add(MakeRow("Game version", string.IsNullOrEmpty(_header.Version) ? "—" : _header.Version), 0, 2);
-            pl.Controls.Add(MakeRow("Magic", _header.Magic), 0, 3);
+            var profile = new GroupBox { Text = "Profile Info", Dock = DockStyle.Fill, Padding = new Padding(10) };
+            var pl = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                FlowDirection = FlowDirection.TopDown,
+                WrapContents = false,
+            };
+            pl.Controls.Add(MakeRow("Profile name", _header.ProfileName));
+            pl.Controls.Add(MakeRow("Save date", _header.SaveYear + "-" + _header.SaveMonth.ToString("00")));
+            pl.Controls.Add(MakeRow("Game version", string.IsNullOrEmpty(_header.Version) ? "—" : _header.Version));
+            pl.Controls.Add(MakeRow("Magic", _header.Magic));
             profile.Controls.Add(pl);
 
             root.RowStyles.Add(new RowStyle(SizeType.Absolute, 150));
@@ -93,13 +96,28 @@ namespace Cms21SaveEditor.UI
 
         private static Control MakeRow(string label, string value)
         {
-            var panel = new TableLayoutPanel { ColumnCount = 2, Dock = DockStyle.Top, AutoSize = true, Margin = new Padding(4, 2, 4, 2) };
-            panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));
-            panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
-            var l = new Label { Text = label, AutoSize = true, Dock = DockStyle.Fill };
-            var v = new Label { Text = value, AutoSize = true, Dock = DockStyle.Fill, Font = new Font(SystemFonts.DefaultFont.FontFamily, 9f, FontStyle.Bold) };
-            panel.Controls.Add(l, 0, 0);
-            panel.Controls.Add(v, 1, 0);
+            var panel = new FlowLayoutPanel
+            {
+                Dock = DockStyle.Top,
+                FlowDirection = FlowDirection.LeftToRight,
+                WrapContents = false,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                Margin = new Padding(0, 4, 0, 4),
+            };
+            panel.Controls.Add(new Label
+            {
+                Text = label + ":",
+                AutoSize = true,
+                MinimumSize = new Size(120, 0),
+                Font = new Font(SystemFonts.DefaultFont.FontFamily, 9.5f, FontStyle.Regular),
+            });
+            panel.Controls.Add(new Label
+            {
+                Text = value,
+                AutoSize = true,
+                Font = new Font(SystemFonts.DefaultFont.FontFamily, 9.5f, FontStyle.Bold),
+            });
             return panel;
         }
     }

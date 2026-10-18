@@ -4,7 +4,7 @@ Desktopová aplikace pro úpravu souborů uložené hry **Car Mechanic Simulator
 
 > **Vždy si zálohujte save soubory před jejich úpravou.**
 > Výchozí umístění save souborů ve Windows:
-> `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Saves\`
+> `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Save\`
 
 ---
 
@@ -34,7 +34,7 @@ Desktopová aplikace pro úpravu souborů uložené hry **Car Mechanic Simulator
 
 | Platforma | Cesta |
 |---|---|
-| Windows (Steam/Epic) | `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Saves\` |
+| Windows (Steam/Epic) | `%USERPROFILE%\AppData\LocalLow\Red Dot Games\Car Mechanic Simulator 2021\Save\` |
 | Windows (Xbox Game Pass) | `%LOCALAPPDATA%\Packages\RedDotGames.CarMechanicSimulator2021_h6vh6...\SystemAppData\wgs\` |
 | Linux (Steam) | `~/.steam/steam/userdata/<id>/1190000/remote/` |
 

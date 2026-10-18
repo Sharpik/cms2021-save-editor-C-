@@ -402,9 +402,25 @@ namespace Cms21SaveEditor.Core
 
         static int TailStatsOffset(byte[] tail)
         {
+            // Classic layout: last occurrence of the NaN sentinel followed by
+            // float32(30.0), then +17 bytes to the money field.
             int idx = BytesLastIndexOf(tail, _STATS_ANCHOR);
-            if (idx == -1) throw new InvalidOperationException("Stats anchor not found — unexpected save format");
-            return idx + 17;
+            if (idx != -1) return idx + 17;
+
+            // Some save versions store the stats block without that sentinel, but
+            // still lead with float32(30.0); the money field sits 13 bytes later.
+            // Locate by structure (position of the 30.0 constant) rather than by the
+            // money/level/xp values so the offset is stable across edits.
+            byte[] f30 = { 0x00, 0x00, 0xf0, 0x41 };
+            int from = Math.Max(0, tail.Length - 300);
+            for (int i = tail.Length - 4; i >= from; i--)
+            {
+                if (tail[i] == f30[3] && i >= 3 &&
+                    tail[i - 1] == f30[2] && tail[i - 2] == f30[1] && tail[i - 3] == f30[0])
+                    return i - 3 + 13;
+            }
+
+            throw new InvalidOperationException("Stats block not found — unexpected save format");
         }
 
         static int TailGarageStateOffset(byte[] tail)
@@ -515,6 +531,7 @@ namespace Cms21SaveEditor.Core
             var partsSections = new List<PartsSection>();
             int pos = hStart;
             int scanPos = rawStart;
+            int sectionStart = -1;
 
             while (scanPos < data.Length - 5)
             {
@@ -529,6 +546,7 @@ namespace Cms21SaveEditor.Core
                         {
                             partsSections.Add(secRes.Item1);
                             pos = secRes.Item2;
+                            sectionStart = scanPos;
                         }
                         break;
                     }
@@ -540,6 +558,18 @@ namespace Cms21SaveEditor.Core
             }
 
             if (partsSections.Count == 0) pos = hStart;
+
+            // header_raw must span from the end of the profile name up to the start
+            // of the first parts section so no bytes are lost on re-encode. The
+            // header-only scan in ParseHeader stops at the first 0xFF run, which for
+            // some save layouts leaves a large gap between it and the section.
+            int headerEnd = (sectionStart != -1) ? sectionStart : pos;
+            if (headerEnd > rawStart)
+            {
+                var hr = new byte[headerEnd - rawStart];
+                Array.Copy(data, rawStart, hr, 0, hr.Length);
+                header.HeaderRaw = BytesToHex(hr, 0, hr.Length);
+            }
 
             save.PartsSections = partsSections;
             var tail = new byte[data.Length - pos];

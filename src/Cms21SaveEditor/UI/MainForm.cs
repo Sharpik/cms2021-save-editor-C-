@@ -73,7 +73,7 @@ namespace Cms21SaveEditor.UI
 
             var footer = new Label
             {
-                Text = "Always back up your save files before editing. Default save location: %USERPROFILE%\\AppData\\LocalLow\\Red Dot Games\\Car Mechanic Simulator 2021\\Saves\\",
+                Text = "Always back up your save files before editing. Default save location: %USERPROFILE%\\AppData\\LocalLow\\Red Dot Games\\Car Mechanic Simulator 2021\\Save\\",
                 Dock = DockStyle.Bottom,
                 AutoSize = false,
                 Height = 26,
